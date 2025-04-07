@@ -1,6 +1,3 @@
-Cara tupla del fichero .csv hace referencia a la información de un vuelo
-El significado de cada columna de los datos es el siguiente:
-
 carrierCode : Código identificativo de la compañía que fleta el vuelo (El que aparece en los paneles informativos del aeropuerto).
 carrierName : Nombre completo de la compañía que fleta el vuelo.
 flightDate : Fecha del vuelo.
