@@ -8,17 +8,17 @@ CREATE TABLE AEROPUERTO (
 
 CREATE TABLE COMPAGNIA (
     idCompagnia NUMBER(10) PRIMARY KEY,
-    codigo VARCHAR(3),
-    nombre VARCHAR(50),
+    --codigo VARCHAR(3),
+    --nombre VARCHAR(50),
 );
 
-CREATE TABLE alberga (
-    idAeropuerto NUMBER(10) NOT NULL,
-    idCompagnia NUMBER(10) NOT NULL,
-    PRIMARY KEY (idAeropuerto, idCompagnia),
-    FOREIGN KEY (idAeropuerto) REFERENCES AEROPUERTO(idAeropuerto),
-    FOREIGN KEY (idCompagnia) REFERENCES COMPAGNIA(idCompagnia)
-);
+--CREATE TABLE alberga (
+--    idAeropuerto NUMBER(10) NOT NULL,
+--    idCompagnia NUMBER(10) NOT NULL,
+--    PRIMARY KEY (idAeropuerto, idCompagnia),
+--    FOREIGN KEY (idAeropuerto) REFERENCES AEROPUERTO(idAeropuerto),
+--    FOREIGN KEY (idCompagnia) REFERENCES COMPAGNIA(idCompagnia)
+--);
 
 CREATE TABLE AVION (
     idAvion NUMBER(10) PRIMARY KEY,
