@@ -11,7 +11,7 @@ CREATE TABLE COMPAGNIA (
 );
 
 CREATE TABLE AVION (
-    matricula VARCHAR(20) PRIMARY KEY,
+    matricula VARCHAR(6) PRIMARY KEY,
     agnoFabricacion NUMBER(4),
     modelo VARCHAR(255),
     fabricante VARCHAR(255),
@@ -27,7 +27,7 @@ CREATE TABLE VUELO (
     aeropuertoSalida VARCHAR(3),
     aeropuertoLlegada VARCHAR(3),
     compagnia VARCHAR(7),
-    avion VARCHAR(20),
+    avion VARCHAR(6),
     FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(codigoIATA),
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(codigoIATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
