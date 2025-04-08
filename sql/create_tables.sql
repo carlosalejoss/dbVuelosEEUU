@@ -1,28 +1,17 @@
 CREATE TABLE AEROPUERTO (
-    idAeropuerto NUMBER(10) PRIMARY KEY,
-    codigoIATA VARCHAR(3) NOT NULL,
+    codigoIATA VARCHAR(3) PRIMARY KEY,
     nombre VARCHAR(50),
     ciudad VARCHAR(50),
     estado VARCHAR(50)
 );
 
 CREATE TABLE COMPAGNIA (
-    idCompagnia NUMBER(10) PRIMARY KEY,
-    --codigo VARCHAR(3),
-    --nombre VARCHAR(50),
+    codigo VARCHAR(3) PRIMARY KEY,
+    nombre VARCHAR(50),
 );
 
---CREATE TABLE alberga (
---    idAeropuerto NUMBER(10) NOT NULL,
---    idCompagnia NUMBER(10) NOT NULL,
---    PRIMARY KEY (idAeropuerto, idCompagnia),
---    FOREIGN KEY (idAeropuerto) REFERENCES AEROPUERTO(idAeropuerto),
---    FOREIGN KEY (idCompagnia) REFERENCES COMPAGNIA(idCompagnia)
---);
-
 CREATE TABLE AVION (
-    idAvion NUMBER(10) PRIMARY KEY,
-    matricula VARCHAR(20) NOT NULL,
+    matricula VARCHAR(20) PRIMARY KEY,
     agnoFabricacion NUMBER(4),
     modelo VARCHAR(255),
     fabricante VARCHAR(255),
@@ -31,19 +20,19 @@ CREATE TABLE AVION (
 
 CREATE TABLE VUELO (
     idVuelo NUMBER(10) PRIMARY KEY,
-    numeroVuelo VARCHAR(10) NOT NULL,
-    fechaSalida VARCHAR(10) NOT NULL,
-    horaSalida NUMBER(10) NOT NULL,
-    fechaLlegada VARCHAR(10) NOT NULL,
-    horaLlegada NUMBER(10) NOT NULL,
-    aeropuertoSalida NUMBER(10) NOT NULL,
-    aeropuertoLlegada NUMBER(10) NOT NULL,
-    compagnia NUMBER(10) NOT NULL,
-    avion NUMBER(10) NOT NULL,
-    FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(idAeropuerto),
-    FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(idAeropuerto),
-    FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(idCompagnia),
-    FOREIGN KEY (avion) REFERENCES AVION(idAvion)
+    numeroVuelo VARCHAR(10),
+    fechaSalida VARCHAR(10),
+    horaSalida NUMBER(10),
+    fechaLlegada VARCHAR(10),
+    horaLlegada NUMBER(10),
+    aeropuertoSalida VARCHAR(3),
+    aeropuertoLlegada VARCHAR(3),
+    compagnia VARCHAR(3),
+    avion VARCHAR(20),
+    FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(codigoIATA),
+    FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(codigoIATA),
+    FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
+    FOREIGN KEY (avion) REFERENCES AVION(matricula)
 );
 
 CREATE TABLE INCIDENCIA (
@@ -62,59 +51,22 @@ CREATE TABLE RETRASO (
 
 CREATE TABLE DESVIO (
     idDesvio NUMBER(10) PRIMARY KEY,
-    aeropuertoDesvio NUMBER(10) NOT NULL,
-    -- numeroDesvio NUMBER(2) NOT NULL,
+    numeroDesvio NUMBER(2) NOT NULL,
+    aeropuertoDesvio VARCHAR(3) NOT NULL,
     idIncidencia NUMBER(10) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
-    FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(idAeropuerto)
+    FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(codigoIATA)
 );
 
 CREATE TABLE CANCELACION (
     idCancelacion NUMBER(10) PRIMARY KEY,
+    motivo VARCHAR(255),
     idIncidencia NUMBER(10) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia)
 );
 
+
 -- SECUENCIAS Y TRIGGERS
-
--- Secuencia para la tabla AEROPUERTO
-CREATE SEQUENCE secAeropuerto
-    START WITH 1
-    INCREMENT BY 1;
--- Trigger para la secuencia en la clave artificial idAeropuerto de la tabla AEROPUERTO
-CREATE OR REPLACE TRIGGER trg_aeropuerto_id
-BEFORE INSERT ON AEROPUERTO
-FOR EACH ROW
-BEGIN
-    :NEW.idAeropuerto := secAeropuerto.NEXTVAL;
-END;
-/
-
--- Secuencia para la tabla COMPAGNIA
-CREATE SEQUENCE secCompagnia
-    START WITH 1
-    INCREMENT BY 1;
--- Trigger para la secuencia en la clave artificial idCompagnia de la tabla COMPAGNIA
-CREATE OR REPLACE TRIGGER trg_compagnia_id
-BEFORE INSERT ON COMPAGNIA
-FOR EACH ROW
-BEGIN
-    :NEW.idCompagnia := secCompagnia.NEXTVAL;
-END;
-/
-
--- Secuencia para la tabla AVION
-CREATE SEQUENCE secAvion
-    START WITH 1
-    INCREMENT BY 1;
--- Trigger para la secuencia en la clave artificial idAvion de la tabla AVION
-CREATE OR REPLACE TRIGGER trg_avion_id
-BEFORE INSERT ON AVION
-FOR EACH ROW
-BEGIN
-    :NEW.idAvion := secAvion.NEXTVAL;
-END;
-/
 
 -- Secuencia para la tabla VUELO
 CREATE SEQUENCE secVuelo
