@@ -6,7 +6,7 @@ CREATE TABLE AEROPUERTO (
 );
 
 CREATE TABLE COMPAGNIA (
-    codigo VARCHAR(3) PRIMARY KEY,
+    codigo VARCHAR(7) PRIMARY KEY,
     nombre VARCHAR(50),
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE VUELO (
     horaLlegada VARCHAR(4),
     aeropuertoSalida VARCHAR(3),
     aeropuertoLlegada VARCHAR(3),
-    compagnia VARCHAR(3),
+    compagnia VARCHAR(7),
     avion VARCHAR(20),
     FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(codigoIATA),
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(codigoIATA),
