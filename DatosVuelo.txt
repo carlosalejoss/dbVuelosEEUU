@@ -1,0 +1,40 @@
+Cara tupla del fichero .csv hace referencia a la información de un vuelo
+El significado de cada columna de los datos es el siguiente:
+
+carrierCode : Código identificativo de la compañía que fleta el vuelo (El que aparece en los paneles informativos del aeropuerto).
+carrierName : Nombre completo de la compañía que fleta el vuelo.
+flightDate : Fecha del vuelo.
+tailNum : Matrícula del avión que realiza el vuelo.
+flightNum : Número de vuelo (El que aparece en los paneles informativos del aeropuerto).
+crsDepTime : Hora estimada de salida del vuelo (La que aparece en el billete).
+crsArrTime : Hora estimada de llegada del vuelo (La que aparece en el billete).
+
+cancelled : Indica si el vuelo ha sido cancelado o no.
+diverted : Indica si el vuelo ha sido desviado o no.
+
+carrierDelay : Tiempo de retraso del vuelo causado por la compañía que fleta el vuelo.
+weatherDelay : Tiempo de retraso del vuelo causado por condiciones meteorológicas.
+nasDelay : Tiempo de retraso del vuelo causado por el centro de control aéreo (NAS).
+securityDelay : Tiempo de retraso del vuelo causado por intervención de los servicios de seguridad del aeropuerto.
+lateAircraftDelay : Tiempo de retraso del vuelo causado por la llegada tardía del avión que realiza el vuelo.
+
+div1airport : Código del aeropuerto al que se ha desviado el vuelo.
+div2airport : Código del aeropuerto al que se ha realizado un segundo desvío del vuelo.
+
+cancellationName : Causa de la cancelación del vuelo.
+
+planeManufacturer : Fabricante del avión que realiza el vuelo.
+planeModel : Modelo del avión que realiza el vuelo.
+plane_Engine_type : Tipo de los motores del avión que realiza el vuelo.
+planeYear : Año de compra del avión que realiza el vuelo.
+
+originiata : Código del aeropuerto de salida del vuelo.
+originairport : Nombre del aeropuerto de salida del vuelo.
+origincity : Ciudad del aeropuerto de salida del vuelo.
+originstate : Estado del aeropuerto de salida del vuelo.
+destiata : Código del aeropuerto de llegada del vuelo.
+destairport : Nombre del aeropuerto de llegada del vuelo.
+destcity : Ciudad del aeropuerto de llegada del vuelo.
+deststate : Estado del aeropuerto de llegada del vuelo.
+
+
