@@ -1,8 +1,6 @@
-Cara tupla del fichero .csv hace referencia a la información de un vuelo
-El significado de cada columna de los datos es el siguiente:
-
 carrierCode : Código identificativo de la compañía que fleta el vuelo (El que aparece en los paneles informativos del aeropuerto).
 carrierName : Nombre completo de la compañía que fleta el vuelo.
+
 flightDate : Fecha del vuelo.
 tailNum : Matrícula del avión que realiza el vuelo.
 flightNum : Número de vuelo (El que aparece en los paneles informativos del aeropuerto).
@@ -26,7 +24,7 @@ cancellationName : Causa de la cancelación del vuelo.
 planeManufacturer : Fabricante del avión que realiza el vuelo.
 planeModel : Modelo del avión que realiza el vuelo.
 plane_Engine_type : Tipo de los motores del avión que realiza el vuelo.
-planeYear : Año de compra del avión que realiza el vuelo.
+planeYear : Año de fabricación del avión que realiza el vuelo.
 
 originiata : Código del aeropuerto de salida del vuelo.
 originairport : Nombre del aeropuerto de salida del vuelo.
@@ -36,5 +34,3 @@ destiata : Código del aeropuerto de llegada del vuelo.
 destairport : Nombre del aeropuerto de llegada del vuelo.
 destcity : Ciudad del aeropuerto de llegada del vuelo.
 deststate : Estado del aeropuerto de llegada del vuelo.
-
-
