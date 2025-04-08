@@ -21,9 +21,8 @@ CREATE TABLE AVION (
 CREATE TABLE VUELO (
     idVuelo NUMBER(10) PRIMARY KEY,
     numeroVuelo VARCHAR(10),
-    fechaSalida VARCHAR(10),
+    fecha VARCHAR(10),
     horaSalida VARCHAR(4),
-    fechaLlegada VARCHAR(10),
     horaLlegada VARCHAR(4),
     aeropuertoSalida VARCHAR(3),
     aeropuertoLlegada VARCHAR(3),
