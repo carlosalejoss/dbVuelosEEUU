@@ -1,0 +1,5 @@
+LOAD DATA
+INFILE './Incidencia.csv'
+INTO TABLE INCIDENCIA
+FIELDS TERMINATED BY ';'
+(idVuelo)
