@@ -1,4 +1,3 @@
-idVuelo;cancelled;cancellationName;diverted;div1airport;div2airport;compania;carrierDelay;tiempo;weatherDelay;NAS;nasDelay;seguridad;securityDelay;previo;lateAircraftDelay;
 1;0;;1;SYR;;compania;0;tiempo;0;NAS;0;seguridad;0;previo;0;
 2;0;;1;IAD;;compania;0;tiempo;0;NAS;0;seguridad;0;previo;0;
 3;0;;1;LAS;;compania;0;tiempo;0;NAS;0;seguridad;0;previo;0;
