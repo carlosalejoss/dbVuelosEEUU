@@ -1,5 +1,6 @@
 load data
-infile ’ ./(Compagnia.csv) ’
+infile './(Compagnia.csv)'
 into table (COMPAGNIA)
-fields terminated by ’; ’
+fields terminated by ';'
+SKIP 1
 (codigo, nombre)
