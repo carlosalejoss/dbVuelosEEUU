@@ -1,3 +1,4 @@
+codigoIATA(carrierCode);nombre(originairport);ciudad(origincity);estado(originstate);
 ABE;Lehigh Valley International;Allentown;PA;
 ABI;Abilene Regional;Abilene;TX;
 ABQ;Albuquerque International;Albuquerque;NM;

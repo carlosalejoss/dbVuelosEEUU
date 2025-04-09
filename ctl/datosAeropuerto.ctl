@@ -4,4 +4,3 @@ INTO TABLE AEROPUERTO
 FIELDS TERMINATED BY ';'
 SKIP 1
 (codigoIATA, nombre, ciudad, estado)
-

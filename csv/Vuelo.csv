@@ -1,3 +1,4 @@
+numeroVuelo(flightNum);fecha(flightDate);horaSalida(crsDepTime);horaLlegada(crsArrTime);aeropuertoSalida(originiata);aeropuertoLlegada(destinata);compagnia(carrierCode);avion(tailNum);
 2;25/10/2008;935;1802;LAX;JFK;AA;N335AA;
 24;25/10/2008;810;1640;SFO;JFK;AA;N352AA;
 181;25/10/2008;1745;2100;JFK;LAX;AA;N319AA;
