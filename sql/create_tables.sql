@@ -1,33 +1,33 @@
 CREATE TABLE AEROPUERTO (
-    codigoIATA VARCHAR(4) PRIMARY KEY,
-    nombre VARCHAR(64),
-    ciudad VARCHAR(64),
-    estado VARCHAR(4)
+    codigoIATA VARCHAR(3) PRIMARY KEY,
+    nombre VARCHAR(50),
+    ciudad VARCHAR(50),
+    estado VARCHAR(50)
 );
 
 CREATE TABLE COMPAGNIA (
-    codigo VARCHAR(8) PRIMARY KEY,
-    nombre VARCHAR(128)
+    codigo VARCHAR(7) PRIMARY KEY,
+    nombre VARCHAR(100)
 );
 
 CREATE TABLE AVION (
-    matricula VARCHAR(8) PRIMARY KEY,
+    matricula VARCHAR(6) PRIMARY KEY,
     agnoFabricacion NUMBER(4),
-    modelo VARCHAR(32),
-    fabricante VARCHAR(32),
-    motor VARCHAR(32)
+    modelo VARCHAR(255),
+    fabricante VARCHAR(255),
+    motor VARCHAR(255)
 );
 
 CREATE TABLE VUELO (
-    idVuelo NUMBER(8) PRIMARY KEY,
-    numeroVuelo NUMBER(8) NOT NULL,
+    idVuelo NUMBER(10) PRIMARY KEY,
+    numeroVuelo VARCHAR(10),
     fecha VARCHAR(10),
     horaSalida VARCHAR(4),
     horaLlegada VARCHAR(4),
-    aeropuertoSalida VARCHAR(4),
-    aeropuertoLlegada VARCHAR(4),
-    compagnia VARCHAR(8),
-    avion VARCHAR(8),
+    aeropuertoSalida VARCHAR(3),
+    aeropuertoLlegada VARCHAR(3),
+    compagnia VARCHAR(7),
+    avion VARCHAR(6),
     FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(codigoIATA),
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(codigoIATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
@@ -35,32 +35,32 @@ CREATE TABLE VUELO (
 );
 
 CREATE TABLE INCIDENCIA (
-    idIncidencia NUMBER(8) PRIMARY KEY,
-    idVuelo NUMBER(8) NOT NULL,
+    idIncidencia NUMBER(10) PRIMARY KEY,
+    idVuelo NUMBER(10) NOT NULL,
     FOREIGN KEY (idVuelo) REFERENCES VUELO(idVuelo)
 );
 
 CREATE TABLE RETRASO (
-    idRetraso NUMBER(8) PRIMARY KEY,
-    causa VARCHAR(32),
-    duracion NUMBER(8),
-    idIncidencia NUMBER(8) NOT NULL,
+    idRetraso NUMBER(10) PRIMARY KEY,
+    causa VARCHAR(255),
+    duracion NUMBER(10),
+    idIncidencia NUMBER(10) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia)
 );
 
 CREATE TABLE DESVIO (
-    idDesvio NUMBER(8) PRIMARY KEY,
+    idDesvio NUMBER(10) PRIMARY KEY,
     numeroDesvio NUMBER(2) NOT NULL,
-    aeropuertoDesvio VARCHAR(4) NOT NULL,
-    idIncidencia NUMBER(8) NOT NULL,
+    aeropuertoDesvio VARCHAR(3) NOT NULL,
+    idIncidencia NUMBER(10) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
     FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(codigoIATA)
 );
 
 CREATE TABLE CANCELACION (
-    idCancelacion NUMBER(8) PRIMARY KEY,
-    motivo VARCHAR(32),
-    idIncidencia NUMBER(8) NOT NULL,
+    idCancelacion NUMBER(10) PRIMARY KEY,
+    motivo VARCHAR(255),
+    idIncidencia NUMBER(10) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia)
 );
 
