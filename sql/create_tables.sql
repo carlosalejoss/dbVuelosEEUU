@@ -14,13 +14,13 @@ CREATE TABLE MODELO (
     nombre VARCHAR(32) PRIMARY KEY,
     fabricante VARCHAR(32),
     motor VARCHAR(32)
-)
+);
 
 CREATE TABLE AVION (
     matricula VARCHAR(8) PRIMARY KEY,
     agnoFabricacion NUMBER(4),
     modelo VARCHAR(32),
-    FOREIGN KEY REFERENCES MODELO(nombre)
+    FOREIGN KEY (modelo) REFERENCES MODELO(nombre)
 );
 
 CREATE TABLE VUELO (
