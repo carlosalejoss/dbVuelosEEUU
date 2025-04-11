@@ -2,7 +2,7 @@ CREATE TABLE AEROPUERTO (
     codigoIATA VARCHAR(4) PRIMARY KEY,
     nombre VARCHAR(64),
     ciudad VARCHAR(64),
-    estado VARCHAR(4)
+    estado VARCHAR(8)
 );
 
 CREATE TABLE COMPAGNIA (
