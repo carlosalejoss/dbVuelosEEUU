@@ -19,4 +19,4 @@ RetrasoPromedio AS (
 SELECT c.nombre AS nombre_compania, rp.retraso_promedio
 FROM RetrasoPromedio rp
 JOIN COMPAGNIA c ON rp.compagnia = c.codigo
-ORDER BY rp.retraso_promedio ASC
+ORDER BY rp.retraso_promedio ASC;

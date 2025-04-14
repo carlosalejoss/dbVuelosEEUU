@@ -25,4 +25,4 @@ WHERE (a.estado = 'AK' OR a.estado = 'CA')
         SELECT codigo_aeropuerto
         FROM AeropuertosOperadosPorCompagniaPrincipal
 )
-ORDER BY a.estado, a.ciudad, a.nombre
+ORDER BY a.estado, a.ciudad, a.nombre;
