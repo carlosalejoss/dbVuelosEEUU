@@ -8,7 +8,7 @@ WITH AvionesEnAeropuertos AS (
     JOIN AVION a ON v.avion = a.matricula
 ),
 EdadPromedioPorAeropuerto AS (
-    SELECT codigo_aeropuerto,AVG(2024 - agnoFabricacion) AS edad_promedio
+    SELECT codigo_aeropuerto,AVG(2025 - agnoFabricacion) AS edad_promedio
     FROM AvionesEnAeropuertos
     GROUP BY codigo_aeropuerto
 ),
