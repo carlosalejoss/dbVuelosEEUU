@@ -14,7 +14,9 @@ BEGIN
     SELECT COUNT(*) INTO v_count_misma_cancelacion
     FROM CANCELACION
     WHERE idIncidencia = :NEW.idIncidencia
-    AND idCancelacion != NVL(:NEW.idCancelacion, -999); -- Si es INSERT, :NEW.idCancelacion sera NULL
+    AND ((:NEW.idCancelacion IS NOT NULL AND idCancelacion != :NEW.idCancelacion) -- Caso de UPDATE
+        OR 
+        (:NEW.idCancelacion IS NULL)); -- Caso de INSERT
     
     -- Si ya existe en otra tabla, rechazar la insercion
     IF v_count_retraso > 0 THEN

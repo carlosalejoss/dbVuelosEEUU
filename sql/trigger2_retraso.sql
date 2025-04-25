@@ -14,7 +14,9 @@ BEGIN
     SELECT COUNT(*) INTO v_count_mismo_retraso
     FROM RETRASO
     WHERE idIncidencia = :NEW.idIncidencia
-    AND idRetraso != NVL(:NEW.idRetraso, -999); -- Si es INSERT, :NEW.idRetraso sera NULL
+    AND ((:NEW.idRetraso IS NOT NULL AND idRetraso != :NEW.idRetraso) -- Caso de UPDATE
+        OR 
+        (:NEW.idRetraso IS NULL)); -- Caso de INSERT
     
     -- Si ya existe en otra tabla, rechazar la insercion
     IF v_count_desvio > 0 THEN
