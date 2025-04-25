@@ -17,19 +17,3 @@ BEGIN
     END IF;
 END;
 /
-
-/*
-INSERT INTO VUELO (idVuelo, numeroVuelo, fecha, horaSalida, horaLlegada, 
-                  aeropuertoSalida, aeropuertoLlegada, compagnia, avion)
-VALUES (secVuelo.NEXTVAL, 9999, '16/04/2024', '0800', '1000', 
-       'RNO', 'SJC', 'WN', 'N551WN');
-
-INSERT INTO INCIDENCIA (idIncidencia, idVuelo)
-    VALUES (secIncidencia.NEXTVAL, 48422);
-
-INSERT INTO CANCELACION (idCancelacion, motivo, idIncidencia)
-    VALUES (secCancelacion.NEXTVAL, 'Prueba de trigger', 13024);
-
-INSERT INTO RETRASO (idRetraso, causa, duracion, idIncidencia)
-    VALUES (secRetraso.NEXTVAL, 'Prueba', 30, 13022);
-*/
