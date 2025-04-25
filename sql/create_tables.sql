@@ -37,9 +37,9 @@ CREATE TABLE VUELO (
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
     FOREIGN KEY (avion) REFERENCES AVION(matricula),
-    CONSTRAINT chk_airports_not_equal CHECK ( aeropuertoSalida <> aeropuertoLlegada ),
-    CONSTRAINT chk_flight_time CHECK ( horaSalida < horaLlegada ),
-    CONSTRAINT chk_time_valid CHECK ( horaSalida BETWEEN '0000' AND '2359' AND horaLlegada BETWEEN '0000' AND '2359' )
+    CONSTRAINT chk_airports_not_equal CHECK ( aeropuertoSalida <> aeropuertoLlegada )
+    --CONSTRAINT chk_flight_time CHECK ( horaSalida < horaLlegada ),
+    --CONSTRAINT chk_time_valid CHECK ( horaSalida BETWEEN '0000' AND '2359' AND horaLlegada BETWEEN '0000' AND '2359' )
 );
 
 CREATE TABLE INCIDENCIA (
