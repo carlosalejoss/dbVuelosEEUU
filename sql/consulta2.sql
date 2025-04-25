@@ -2,7 +2,7 @@ WITH CompagniaConMasAviones AS (
     SELECT v.compagnia, COUNT(DISTINCT v.avion) AS num_aviones
     FROM VUELO v
     GROUP BY v.compagnia
-    ORDER BY COUNT(DISTINCT v.avion) DESC
+    ORDER BY num_aviones DESC
 ),
 CompagniaPrincipal AS (
     SELECT compagnia
