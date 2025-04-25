@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER trg_incidencia_exclusividad
+CREATE OR REPLACE TRIGGER trg_incidencia_exclusividad_retraso
 BEFORE INSERT OR UPDATE ON RETRASO
 FOR EACH ROW
 DECLARE

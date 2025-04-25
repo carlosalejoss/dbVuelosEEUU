@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER trg_incidencia_exclusividad_cancel
+CREATE OR REPLACE TRIGGER trg_incidencia_exclusividad_cancelacion
 BEFORE INSERT OR UPDATE ON CANCELACION
 FOR EACH ROW
 DECLARE
