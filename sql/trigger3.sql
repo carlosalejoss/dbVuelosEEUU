@@ -13,7 +13,7 @@ BEGIN
     
     -- Comprobar si el aeropuerto de desvío es el mismo que el de llegada original
     IF :NEW.aeropuertoDesvio = v_aeropuerto_llegada THEN
-        RAISE_APPLICATION_ERROR(-20201, 'El aeropuerto de desvío (' || :NEW.aeropuertoDesvio || 
+        RAISE_APPLICATION_ERROR(-20201, 'El aeropuerto de desvio (' || :NEW.aeropuertoDesvio || 
                               ') no puede ser el mismo que el aeropuerto de llegada original del vuelo.');
     END IF;
 END;

@@ -18,17 +18,17 @@ BEGIN
     
     IF v_count_desvio > 0 THEN
         RAISE_APPLICATION_ERROR(-20101, 'La incidencia ' || :NEW.idIncidencia || 
-                               ' ya está registrada como desvío. Una incidencia solo puede ser de un tipo.');
+                               ' ya esta registrada como desvio. Una incidencia solo puede ser de un tipo.');
     END IF;
     
     IF v_count_cancelacion > 0 THEN
         RAISE_APPLICATION_ERROR(-20102, 'La incidencia ' || :NEW.idIncidencia || 
-                               ' ya está registrada como cancelación. Una incidencia solo puede ser de un tipo.');
+                               ' ya esta registrada como cancelacion. Una incidencia solo puede ser de un tipo.');
     END IF;
     
     IF v_count_mismo_retraso > 0 THEN
         RAISE_APPLICATION_ERROR(-20103, 'La incidencia ' || :NEW.idIncidencia || 
-                               ' ya está registrada como retraso. No se permiten duplicados.');
+                               ' ya esta registrada como retraso. No se permiten duplicados.');
     END IF;
 END;
 /

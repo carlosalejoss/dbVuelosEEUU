@@ -25,18 +25,18 @@ BEGIN
     -- Si ya existe en otra tabla, rechazar la inserción
     IF v_count_retraso > 0 THEN
         RAISE_APPLICATION_ERROR(-20103, 'La incidencia ' || :NEW.idIncidencia || 
-                               ' ya está registrada como retraso. Una incidencia solo puede ser de un tipo.');
+                               ' ya esta registrada como retraso. Una incidencia solo puede ser de un tipo.');
     END IF;
     
     IF v_count_cancelacion > 0 THEN
         RAISE_APPLICATION_ERROR(-20104, 'La incidencia ' || :NEW.idIncidencia || 
-                               ' ya está registrada como cancelación. Una incidencia solo puede ser de un tipo.');
+                               ' ya esta registrada como cancelacion. Una incidencia solo puede ser de un tipo.');
     END IF;
     
     -- Si ya existe en la misma tabla, rechazar la inserción
     IF v_count_mismo_desvio > 0 THEN
         RAISE_APPLICATION_ERROR(-20105, 'La incidencia ' || :NEW.idIncidencia || 
-                               ' ya está registrada como desvío. No se permiten duplicados.');
+                               ' ya esta registrada como desvio. No se permiten duplicados.');
     END IF;
 END;
 /

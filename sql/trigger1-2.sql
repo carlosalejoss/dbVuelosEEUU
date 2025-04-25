@@ -13,7 +13,7 @@ BEGIN
     
     -- Si existe cancelación, no permitir la inserción de desvío
     IF v_existe_cancelacion > 0 THEN
-        RAISE_APPLICATION_ERROR(-20002, 'No se puede registrar un desvío en un vuelo cancelado');
+        RAISE_APPLICATION_ERROR(-20002, 'No se puede registrar un desvio en un vuelo cancelado');
     END IF;
 END;
 /
@@ -31,5 +31,5 @@ INSERT INTO CANCELACION (idCancelacion, motivo, idIncidencia)
     VALUES (secCancelacion.NEXTVAL, 'Prueba de trigger', 13002);
 
 INSERT INTO DESVIO (idDesvio, numeroDesvio, aeropuertoDesvio, idIncidencia)
-        VALUES (secDesvio.NEXTVAL, 1, 'DFW', 13004);
+        VALUES (secDesvio.NEXTVAL, 1, 'DFW', 13024);
 */
