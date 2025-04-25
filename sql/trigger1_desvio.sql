@@ -5,8 +5,7 @@ DECLARE
     v_existe_cancelacion NUMBER := 0;
 BEGIN
     -- Verificar si existe una cancelación para el vuelo asociado a esta incidencia
-    SELECT COUNT(*)
-    INTO v_existe_cancelacion
+    SELECT COUNT(*) INTO v_existe_cancelacion
     FROM CANCELACION c
     JOIN INCIDENCIA i ON c.idIncidencia = i.idIncidencia
     WHERE i.idVuelo = (SELECT idVuelo FROM INCIDENCIA WHERE idIncidencia = :NEW.idIncidencia);
