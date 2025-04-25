@@ -6,8 +6,8 @@ WITH CompagniaConMasAviones AS (
 ),
 CompagniaPrincipal AS (
     SELECT compagnia
-    FROM CompagniaConMasAviones
-    WHERE ROWNUM = 1
+    FROM CompagniaConMasAviones c
+    WHERE c.num_aviones = (SELECT MAX(num_aviones) FROM CompagniaConMasAviones)
 ),
 AeropuertosOperadosPorCompagniaPrincipal AS (
     SELECT DISTINCT v.aeropuertoSalida AS codigo_aeropuerto
