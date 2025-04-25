@@ -1,22 +1,15 @@
 CREATE OR REPLACE TRIGGER trg_incidencia_exclusividad_retraso
-BEFORE INSERT OR UPDATE ON RETRASO
+BEFORE INSERT ON RETRASO
 FOR EACH ROW
 DECLARE
     v_count_desvio NUMBER := 0;
     v_count_cancelacion NUMBER := 0;
-    v_count_mismo_retraso NUMBER := 0;
+    v_count_retraso NUMBER := 0;
 BEGIN
-    -- Verificar si la incidencia ya existe en DESVIO o en CANCELACION 
+    -- Verificar si la incidencia ya existe en DESVIO o en CANCELACION o en RETRASO
     SELECT COUNT(*) INTO v_count_desvio FROM DESVIO WHERE idIncidencia = :NEW.idIncidencia;
     SELECT COUNT(*) INTO v_count_cancelacion FROM CANCELACION WHERE idIncidencia = :NEW.idIncidencia;
-    
-    -- Excluir el registro actual en caso de UPDATE
-    SELECT COUNT(*) INTO v_count_mismo_retraso
-    FROM RETRASO
-    WHERE idIncidencia = :NEW.idIncidencia
-    AND ((:NEW.idRetraso IS NOT NULL AND idRetraso != :NEW.idRetraso) -- Caso de UPDATE
-        OR 
-        (:NEW.idRetraso IS NULL)); -- Caso de INSERT
+    SELECT COUNT(*) INTO v_countretraso FROM RETRASO WHERE idIncidencia = :NEW.idIncidencia;
     
     -- Si ya existe en otra tabla, rechazar la insercion
     IF v_count_desvio > 0 THEN
@@ -29,7 +22,7 @@ BEGIN
                                ' ya esta registrada como cancelacion. Una incidencia solo puede ser de un tipo.');
     END IF;
     
-    IF v_count_mismo_retraso > 0 THEN
+    IF v_count_retraso > 0 THEN
         RAISE_APPLICATION_ERROR(-20103, 'La incidencia ' || :NEW.idIncidencia || 
                                ' ya esta registrada como retraso. No se permiten duplicados.');
     END IF;
