@@ -5,7 +5,7 @@ WITH CompagniaConMasAviones AS (
     ORDER BY num_aviones DESC
 ),
 CompagniaPrincipal AS (
-    SELECT compagnia
+    SELECT c.compagnia
     FROM CompagniaConMasAviones c
     WHERE c.num_aviones = (SELECT MAX(num_aviones) FROM CompagniaConMasAviones)
 ),
