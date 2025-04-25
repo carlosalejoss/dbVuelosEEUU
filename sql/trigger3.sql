@@ -2,7 +2,7 @@ CREATE OR REPLACE TRIGGER trg_validate_desvio_aeropuerto
 BEFORE INSERT OR UPDATE ON DESVIO
 FOR EACH ROW
 DECLARE
-    v_aeropuerto_llegada VARCHAR2(4);
+    v_aeropuerto_llegada VARCHAR(4);
 BEGIN
     -- Obtener el aeropuerto de llegada original del vuelo asociado a esta incidencia
     SELECT v.aeropuertoLlegada
@@ -18,9 +18,3 @@ BEGIN
     END IF;
 END;
 /
-
-INSERT INTO DESVIO (numeroDesvio, aeropuertoDesvio, idIncidencia)
-        VALUES (1, 'ORD', 13024);
-
-INSERT INTO DESVIO (numeroDesvio, aeropuertoDesvio, idIncidencia)
-        VALUES (2, 'SJC', 13024);
