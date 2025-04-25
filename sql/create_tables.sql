@@ -37,7 +37,9 @@ CREATE TABLE VUELO (
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
     FOREIGN KEY (avion) REFERENCES AVION(matricula),
-    CONSTRAINT chk_airports_not_equal CHECK ( aeropuertoSalida <> aeropuertoLlegada )
+    CONSTRAINT chk_airports_not_equal CHECK ( aeropuertoSalida <> aeropuertoLlegada ),
+    CONSTRAINT chk_flight_time CHECK ( horaSalida < horaLlegada ),
+    CONSTRAINT chk_flight_time_valid CHECK ( (0000 <= horaSalida <= 2359) AND (0000 <= horaLlegada <= 2359) )
 );
 
 CREATE TABLE INCIDENCIA (
@@ -52,7 +54,7 @@ CREATE TABLE RETRASO (
     duracion NUMBER(8),
     idIncidencia NUMBER(8) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
-    CONSTRAINT chk_duration CHECK ( duracion >= 0 )
+    CONSTRAINT chk_duration CHECK ( duracion > 0 )
 );
 
 CREATE TABLE DESVIO (
