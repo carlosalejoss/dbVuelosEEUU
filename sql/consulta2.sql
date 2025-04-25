@@ -18,10 +18,10 @@ AeropuertosOperadosPorCompagniaPrincipal AS (
     FROM VUELO v
     JOIN CompagniaPrincipal cp ON v.compagnia = cp.compagnia
 )
-SELECT a.codigoIATA, a.nombre, a.ciudad, a.estado
+SELECT a.IATA, a.nombre, a.ciudad, a.estado
 FROM AEROPUERTO a
 WHERE (a.estado = 'AK' OR a.estado = 'CA')
-   AND a.codigoIATA NOT IN (
+   AND a.IATA NOT IN (
         SELECT codigo_aeropuerto
         FROM AeropuertosOperadosPorCompagniaPrincipal
 )

@@ -17,6 +17,6 @@ AeropuertoConAvionesJovenes AS (
     FROM EdadPromedioPorAeropuerto
     WHERE edad_promedio = (SELECT MIN(edad_promedio) FROM EdadPromedioPorAeropuerto)
 )
-SELECT a.codigoIATA, a.nombre, aaj.edad_promedio AS media_edad_aviones
+SELECT a.IATA, a.nombre, aaj.edad_promedio AS media_edad_aviones
 FROM AeropuertoConAvionesJovenes aaj
-JOIN AEROPUERTO a ON aaj.codigo_aeropuerto = a.codigoIATA;
+JOIN AEROPUERTO a ON aaj.codigo_aeropuerto = a.IATA;

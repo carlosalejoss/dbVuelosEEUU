@@ -1,5 +1,5 @@
 CREATE TABLE AEROPUERTO (
-    codigoIATA VARCHAR(4) PRIMARY KEY,
+    IATA VARCHAR(4) PRIMARY KEY,
     nombre VARCHAR(64),
     ciudad VARCHAR(64),
     estado VARCHAR(8)
@@ -33,8 +33,8 @@ CREATE TABLE VUELO (
     aeropuertoLlegada VARCHAR(4),
     compagnia VARCHAR(8),
     avion VARCHAR(8),
-    FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(codigoIATA),
-    FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(codigoIATA),
+    FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(IATA),
+    FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
     FOREIGN KEY (avion) REFERENCES AVION(matricula),
     CONSTRAINT chk_airports_not_equal CHECK ( aeropuertoSalida <> aeropuertoLlegada )
@@ -61,7 +61,7 @@ CREATE TABLE DESVIO (
     aeropuertoDesvio VARCHAR(4) NOT NULL,
     idIncidencia NUMBER(8) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
-    FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(codigoIATA)
+    FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(IATA)
 );
 
 CREATE TABLE CANCELACION (
