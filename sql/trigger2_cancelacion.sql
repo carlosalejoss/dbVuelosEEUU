@@ -1,5 +1,5 @@
 CREATE OR REPLACE TRIGGER trg_incidencia_exclusividad_cancelacion
-BEFORE INSERT ON CANCELACION
+BEFORE INSERT OR UPDATE ON CANCELACION
 FOR EACH ROW
 DECLARE
     v_count_retraso NUMBER := 0;
@@ -14,9 +14,9 @@ BEGIN
     SELECT COUNT(*) INTO v_count_misma_cancelacion
     FROM CANCELACION
     WHERE idIncidencia = :NEW.idIncidencia
-    AND idCancelacion != NVL(:NEW.idCancelacion, -999); -- Si es INSERT, :NEW.idCancelacion será NULL
+    AND idCancelacion != NVL(:NEW.idCancelacion, -999); -- Si es INSERT, :NEW.idCancelacion sera NULL
     
-    -- Si ya existe en otra tabla, rechazar la inserción
+    -- Si ya existe en otra tabla, rechazar la insercion
     IF v_count_retraso > 0 THEN
         RAISE_APPLICATION_ERROR(-20105, 'La incidencia ' || :NEW.idIncidencia || 
                                ' ya esta registrada como retraso. Una incidencia solo puede ser de un tipo.');

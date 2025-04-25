@@ -1,5 +1,5 @@
 CREATE OR REPLACE TRIGGER trg_incidencia_exclusividad_retraso
-BEFORE INSERT ON RETRASO
+BEFORE INSERT OR UPDATE ON RETRASO
 FOR EACH ROW
 DECLARE
     v_count_desvio NUMBER := 0;
@@ -14,9 +14,9 @@ BEGIN
     SELECT COUNT(*) INTO v_count_mismo_retraso
     FROM RETRASO
     WHERE idIncidencia = :NEW.idIncidencia
-    AND idRetraso != NVL(:NEW.idRetraso, -999); -- Si es INSERT, :NEW.idRetraso será NULL
+    AND idRetraso != NVL(:NEW.idRetraso, -999); -- Si es INSERT, :NEW.idRetraso sera NULL
     
-    -- Si ya existe en otra tabla, rechazar la inserción
+    -- Si ya existe en otra tabla, rechazar la insercion
     IF v_count_desvio > 0 THEN
         RAISE_APPLICATION_ERROR(-20101, 'La incidencia ' || :NEW.idIncidencia || 
                                ' ya esta registrada como desvio. Una incidencia solo puede ser de un tipo.');
