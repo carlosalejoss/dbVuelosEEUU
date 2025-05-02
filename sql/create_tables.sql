@@ -50,7 +50,7 @@ CREATE TABLE VUELO (
         TO_DATE(fechaLlegada, 'DD/MM/YYYY') IS NOT NULL
     ),
     CONSTRAINT chk_coherencia_fechas CHECK (
-        -- Caso 1: Fechas diferentes - la fecha de salida debe ser anterior a la de llegada
+        -- Caso 1: Fechas diferentes - la fecha de salida puede ser anterior a la de llegada
         (TO_DATE(fechaSalida, 'DD/MM/YYYY') < TO_DATE(fechaLlegada, 'DD/MM/YYYY'))
         OR
         -- Caso 2: Misma fecha - la hora de salida debe ser menor o igual a la de llegada
