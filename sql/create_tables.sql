@@ -33,7 +33,7 @@ CREATE TABLE VUELO (
     aeropuertoSalida VARCHAR(4) NOT NULL,
     aeropuertoLlegada VARCHAR(4) NOT NULL,
     compagnia VARCHAR(8) NOT NULL,
-    avion VARCHAR(8) NULL, -- Hay vuelos cancelados que no tienen avion asignado
+    avion VARCHAR(8) NULL,
     FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
