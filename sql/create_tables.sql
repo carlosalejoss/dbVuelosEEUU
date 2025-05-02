@@ -79,8 +79,10 @@ CREATE TABLE DESVIO (
     numeroDesvio NUMBER(2) NOT NULL,
     aeropuertoDesvio VARCHAR(4) NOT NULL,
     idIncidencia NUMBER(8) NOT NULL,
+    avionDesvio VARCHAR(8),
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
-    FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(IATA)
+    FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(IATA),
+    FOREIGN KEY (avionDesvio) REFERENCES AVION(matricula)
 );
 
 CREATE TABLE CANCELACION (
