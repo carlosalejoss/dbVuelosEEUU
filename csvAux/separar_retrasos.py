@@ -7,10 +7,10 @@ parser.add_argument("input_file", help="Nombre del archivo CSV de entrada.")
 args = parser.parse_args()
 
 # Archivo de salida
-output_file = "Incidencia.csv"
+output_file = "IncidenciaAux2.csv"
 
 # Columnas de retrasos
-delay_columns = ["carrierDelay", "weatherDelay", "nasDelay", "securityDelay", "lateAircraftDelay", "divArrDelay"]
+delay_columns = ["carrierDelay", "weatherDelay", "nasDelay", "securityDelay", "lateAircraftDelay","divArrDelay"]
 
 # Procesar el archivo
 with open(args.input_file, mode="r", newline="", encoding="utf-8") as infile, \
