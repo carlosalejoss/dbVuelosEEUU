@@ -33,28 +33,29 @@ CREATE TABLE VUELO (
     aeropuertoSalida VARCHAR(4) NOT NULL,
     aeropuertoLlegada VARCHAR(4) NOT NULL,
     compagnia VARCHAR(8) NOT NULL,
-    avion VARCHAR(8) NOT NULL,
+    avion VARCHAR(8) NULL, -- Hay vuelos cancelados que no tienen avion asignado
     FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
     FOREIGN KEY (avion) REFERENCES AVION(matricula),
     CONSTRAINT chk_vuelo_unico UNIQUE (fechaSalida, fechaLlegada, horaSalida, horaLlegada, avion),
     CONSTRAINT chk_aeropuertos_distintos CHECK ( aeropuertoSalida <> aeropuertoLlegada ),
-    CONSTRAINT chk_formato_fecha_salida CHECK (
+    CONSTRAINT chk_formato_fechas CHECK (
+        -- Validación de fechaSalida
         LENGTH(fechaSalida) = 10 AND
         TO_DATE(fechaSalida, 'DD/MM/YYYY') IS NOT NULL
-    ),
-    CONSTRAINT chk_formato_fecha_llegada CHECK (
+        AND
+        -- Validación de fechaLlegada
         LENGTH(fechaLlegada) = 10 AND
         TO_DATE(fechaLlegada, 'DD/MM/YYYY') IS NOT NULL
     ),
     CONSTRAINT chk_coherencia_fechas CHECK (
-        TO_DATE(fechaSalida, 'DD/MM/YYYY') <= TO_DATE(fechaLlegada, 'DD/MM/YYYY')
-    ),
-    CONSTRAINT chk_coherencia_horas CHECK (
-        TO_DATE(fechaSalida, 'DD/MM/YYYY') = TO_DATE(fechaLlegada, 'DD/MM/YYYY') 
-        AND
-        TO_NUMBER(horaSalida) <= TO_NUMBER(horaLlegada)
+        -- Caso 1: Fechas diferentes - la fecha de salida debe ser anterior a la de llegada
+        (TO_DATE(fechaSalida, 'DD/MM/YYYY') < TO_DATE(fechaLlegada, 'DD/MM/YYYY'))
+        OR
+        -- Caso 2: Misma fecha - la hora de salida debe ser menor o igual a la de llegada
+        (TO_DATE(fechaSalida, 'DD/MM/YYYY') = TO_DATE(fechaLlegada, 'DD/MM/YYYY') 
+         AND TO_NUMBER(horaSalida) <= TO_NUMBER(horaLlegada))
     )
 );
 
