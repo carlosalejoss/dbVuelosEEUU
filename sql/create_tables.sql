@@ -78,8 +78,8 @@ CREATE TABLE DESVIO (
     idDesvio NUMBER(8) PRIMARY KEY,
     numeroDesvio NUMBER(2) NOT NULL,
     aeropuertoDesvio VARCHAR(4) NOT NULL,
-    idIncidencia NUMBER(8) NOT NULL,
     avionDesvio VARCHAR(8),
+    idIncidencia NUMBER(8) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
     FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (avionDesvio) REFERENCES AVION(matricula)
