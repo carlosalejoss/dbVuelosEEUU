@@ -1,6 +1,6 @@
 /*
 -- Índices para las operaciones de JOIN y filtrado
-CREATE INDEX idx_vuelo_compagnia_fecha ON VUELO(compagnia, fecha);
+CREATE INDEX idx_vuelo_compagnia_fecha ON VUELO(compagnia, fechaSalida);
 CREATE INDEX idx_incidencia_idvuelo_idincidencia ON INCIDENCIA(idVuelo, idIncidencia);
 CREATE INDEX idx_retraso_idincidencia_duracion ON RETRASO(idIncidencia, duracion);
 */
@@ -9,9 +9,9 @@ CREATE INDEX idx_retraso_idincidencia_duracion ON RETRASO(idIncidencia, duracion
 CREATE MATERIALIZED VIEW MV_VUELOS_POR_DIA
 REFRESH ON DEMAND
 AS
-SELECT v.compagnia, v.fecha, COUNT(*) AS vuelos_por_dia
+SELECT v.compagnia, v.fechaSalida, COUNT(*) AS vuelos_por_dia
 FROM VUELO v
-GROUP BY v.compagnia, v.fecha
+GROUP BY v.compagnia, v.fechaSalida
 HAVING COUNT(*) >= 1000;
 
 /*

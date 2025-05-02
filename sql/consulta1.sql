@@ -1,7 +1,7 @@
 WITH VuelosPorDia AS (
-    SELECT v.compagnia, v.fecha, COUNT(*) AS vuelos_por_dia
+    SELECT v.compagnia, v.fechaSalida, COUNT(*) AS vuelos_por_dia
     FROM VUELO v
-    GROUP BY v.compagnia, v.fecha
+    GROUP BY v.compagnia, v.fechaSalida
     HAVING COUNT(*) >= 1000
 ),
 CompaniasCalificadas AS (

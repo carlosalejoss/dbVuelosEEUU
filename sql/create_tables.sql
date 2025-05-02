@@ -1,19 +1,19 @@
 CREATE TABLE AEROPUERTO (
     IATA VARCHAR(4) PRIMARY KEY,
-    nombre VARCHAR(64),
-    ciudad VARCHAR(64),
-    estado VARCHAR(8)
+    nombre VARCHAR(64) NOT NULL,
+    ciudad VARCHAR(64) NOT NULL,
+    estado VARCHAR(8) NOT NULL
 );
 
 CREATE TABLE COMPAGNIA (
     codigo VARCHAR(8) PRIMARY KEY,
-    nombre VARCHAR(128)
+    nombre VARCHAR(128) NOT NULL
 );
 
 CREATE TABLE MODELO (
     nombre VARCHAR(32) PRIMARY KEY,
-    fabricante VARCHAR(32),
-    motor VARCHAR(32)
+    fabricante VARCHAR(32) NOT NULL,
+    motor VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE AVION (
@@ -26,18 +26,36 @@ CREATE TABLE AVION (
 CREATE TABLE VUELO (
     idVuelo NUMBER(8) PRIMARY KEY,
     numeroVuelo NUMBER(8) NOT NULL,
-    fecha VARCHAR(10),
-    horaSalida VARCHAR(4),
-    horaLlegada VARCHAR(4),
-    aeropuertoSalida VARCHAR(4),
-    aeropuertoLlegada VARCHAR(4),
-    compagnia VARCHAR(8),
-    avion VARCHAR(8),
+    fechaSalida VARCHAR(10) NOT NULL,
+    fechaLlegada VARCHAR(10) NOT NULL,
+    horaSalida VARCHAR(4) NOT NULL,
+    horaLlegada VARCHAR(4) NOT NULL,
+    aeropuertoSalida VARCHAR(4) NOT NULL,
+    aeropuertoLlegada VARCHAR(4) NOT NULL,
+    compagnia VARCHAR(8) NOT NULL,
+    avion VARCHAR(8) NOT NULL,
     FOREIGN KEY (aeropuertoSalida) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (aeropuertoLlegada) REFERENCES AEROPUERTO(IATA),
     FOREIGN KEY (compagnia) REFERENCES COMPAGNIA(codigo),
     FOREIGN KEY (avion) REFERENCES AVION(matricula),
-    CONSTRAINT chk_airports_not_equal CHECK ( aeropuertoSalida <> aeropuertoLlegada )
+    CONSTRAINT chk_vuelo_unico UNIQUE (fechaSalida, fechaLlegada, horaSalida, horaLlegada, avion),
+    CONSTRAINT chk_aeropuertos_distintos CHECK ( aeropuertoSalida <> aeropuertoLlegada ),
+    CONSTRAINT chk_formato_fecha_salida CHECK (
+        LENGTH(fechaSalida) = 10 AND
+        TO_DATE(fechaSalida, 'DD/MM/YYYY') IS NOT NULL
+    ),
+    CONSTRAINT chk_formato_fecha_llegada CHECK (
+        LENGTH(fechaLlegada) = 10 AND
+        TO_DATE(fechaLlegada, 'DD/MM/YYYY') IS NOT NULL
+    ),
+    CONSTRAINT chk_coherencia_fechas CHECK (
+        TO_DATE(fechaSalida, 'DD/MM/YYYY') <= TO_DATE(fechaLlegada, 'DD/MM/YYYY')
+    ),
+    CONSTRAINT chk_coherencia_horas CHECK (
+        TO_DATE(fechaSalida, 'DD/MM/YYYY') = TO_DATE(fechaLlegada, 'DD/MM/YYYY') 
+        AND
+        TO_NUMBER(horaSalida) <= TO_NUMBER(horaLlegada)
+    )
 );
 
 CREATE TABLE INCIDENCIA (
@@ -48,11 +66,11 @@ CREATE TABLE INCIDENCIA (
 
 CREATE TABLE RETRASO (
     idRetraso NUMBER(8) PRIMARY KEY,
-    causa VARCHAR(32),
-    duracion NUMBER(8),
+    causa VARCHAR(32) NOT NULL,
+    duracion NUMBER(8) NOT NULL,
     idIncidencia NUMBER(8) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
-    CONSTRAINT chk_duration CHECK ( duracion > 0 )
+    CONSTRAINT chk_duracion CHECK ( duracion > 0 )
 );
 
 CREATE TABLE DESVIO (
@@ -66,7 +84,7 @@ CREATE TABLE DESVIO (
 
 CREATE TABLE CANCELACION (
     idCancelacion NUMBER(8) PRIMARY KEY,
-    motivo VARCHAR(32),
+    motivo VARCHAR(32) NOT NULL,
     idIncidencia NUMBER(8) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia)
 );
