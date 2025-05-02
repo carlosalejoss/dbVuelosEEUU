@@ -42,7 +42,7 @@ def calcular_fecha_llegada(fecha_salida, hora_salida_str, hora_llegada_str):
 
 # Archivo de entrada y salida
 archivo_entrada = "Vuelo.csv"
-archivo_salida = "vuelo_con_llegada.csv"
+archivo_salida = "Vuelo_con_llegada.csv"
 
 # Leer datos del CSV de entrada y escribir en el CSV de salida
 with open(archivo_entrada, 'r', encoding='utf-8') as entrada, open(archivo_salida, 'w', newline='', encoding='utf-8') as salida:
