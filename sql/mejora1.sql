@@ -1,4 +1,3 @@
--- Vista materializada para los vuelos por compañía por día
 CREATE MATERIALIZED VIEW MV_VUELOS_POR_COMPAGNIA_DIA
 REFRESH ON DEMAND
 AS
@@ -6,7 +5,6 @@ SELECT v.compagnia, v.fechaSalida, COUNT(*) AS vuelos_por_dia
 FROM VUELO v
 GROUP BY v.compagnia, v.fechaSalida;
 
--- Vista materializada para retrasos
 CREATE MATERIALIZED VIEW MV_RETRASOS_VUELO
 REFRESH ON DEMAND
 AS
@@ -18,7 +16,7 @@ JOIN RETRASO r ON i.idIncidencia = r.idIncidencia;
 /*
 Para ver la mejora fisica habría que hacer lo siguiente:
     > @mejora1
-    
+
     > EXPLAIN PLAN FOR
         WITH DiasDistintos AS (
             -- Obtener el número total de días distintos
