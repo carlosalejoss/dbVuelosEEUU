@@ -1,0 +1,6 @@
+OPTIONS (SKIP=1)
+LOAD DATA
+INFILE './Aeropuerto.csv'
+INTO TABLE AEROPUERTO
+FIELDS TERMINATED BY ';'
+(IATA, nombre, ciudad, estado)
