@@ -2,10 +2,7 @@
 CREATE MATERIALIZED VIEW MV_VUELOS_POR_COMPAGNIA_DIA
 REFRESH ON DEMAND
 AS
-SELECT 
-    v.compagnia, 
-    v.fechaSalida, 
-    COUNT(*) AS vuelos_por_dia
+SELECT v.compagnia, v.fechaSalida, COUNT(*) AS vuelos_por_dia
 FROM VUELO v
 GROUP BY v.compagnia, v.fechaSalida;
 
