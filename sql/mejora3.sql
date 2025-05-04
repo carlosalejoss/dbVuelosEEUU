@@ -11,7 +11,7 @@ JOIN AVION a ON v.avion = a.matricula;
 
 /* 
 Para ver la mejora fisica habría que hacer lo siguiente:
-    > @mejora1
+    > @mejora3
     
     > EXPLAIN PLAN FOR
         WITH EdadPromedioPorAeropuerto AS (

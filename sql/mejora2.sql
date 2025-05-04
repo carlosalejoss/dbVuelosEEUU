@@ -8,7 +8,7 @@ ORDER BY num_aviones DESC;
 
 /*
 Para ver la mejora fisica habría que hacer lo siguiente:
-    > @mejora1
+    > @mejora2
     
     > EXPLAIN PLAN FOR
         WITH CompagniaPrincipal AS (
