@@ -7,7 +7,6 @@ DECLARE
 BEGIN
     -- Verificar si la incidencia ya existe en DESVIO o en CANCELACION o en RETRASO
     SELECT COUNT(*) INTO v_count_desvio FROM DESVIO d WHERE d.idIncidencia = :NEW.idIncidencia;
-
     SELECT COUNT(*) INTO v_count_cancelacion FROM CANCELACION c WHERE c.idIncidencia = :NEW.idIncidencia;
     
     -- Si ya existe en otra tabla, rechazar la insercion
