@@ -1,31 +1,20 @@
-WITH DiasTotales AS (
-    -- Obtener todos los días distintos en los que hay vuelos
-    SELECT DISTINCT fechaSalida AS dia
-    FROM VUELO
-),
-NumDias AS (
-    -- Contar el número total de días
-    SELECT COUNT(*) AS total_dias
-    FROM DiasTotales
-),
-VuelosPorCompaniaPorDia AS (
+WITH VuelosPorCompaniaPorDia AS (
     -- Contar vuelos de cada compañía por día
     SELECT v.compagnia, v.fechaSalida, COUNT(*) AS vuelos_por_dia
     FROM VUELO v
     GROUP BY v.compagnia, v.fechaSalida
 ),
-DiasConMilVuelos AS (
-    -- Días con 1000+ vuelos por compañía
-    SELECT vpcd.compagnia, COUNT(*) AS dias_con_1000_vuelos
-    FROM VuelosPorCompaniaPorDia vpcd
-    WHERE vpcd.vuelos_por_dia >= 1000
-    GROUP BY vpcd.compagnia
+DiasDistintos AS (
+    -- Obtener el número total de días distintos
+    SELECT COUNT(DISTINCT fechaSalida) AS total_dias FROM VUELO
 ),
 CompaniasCalificadas AS (
     -- Seleccionar compañías que tuvieron 1000+ vuelos en TODOS los días
-    SELECT dcmv.compagnia
-    FROM DiasConMilVuelos dcmv, NumDias nd
-    WHERE dcmv.dias_con_1000_vuelos = nd.total_dias
+    SELECT vpcd.compagnia
+    FROM VuelosPorCompaniaPorDia vpcd
+    WHERE vpcd.vuelos_por_dia >= 1000
+    GROUP BY vpcd.compagnia
+    HAVING COUNT(*) = (SELECT total_dias FROM DiasDistintos)
 ),
 RetrasosPorVuelo AS (
     -- Obtener la duración del retraso para cada vuelo (solo si existe retraso)
@@ -50,9 +39,9 @@ TotalVuelosPorCompania AS (
 ),
 RetrasoCompletoCompania AS (
     -- Combinar totales con retraso y sin retraso
-    SELECT tvpc.compagnia, tvpc.total_vuelos, retrasos_aux.total_minutos_retraso
+    SELECT tvpc.compagnia, tvpc.total_vuelos, trpc.total_minutos_retraso
     FROM TotalVuelosPorCompania tvpc
-    LEFT JOIN (SELECT trpc.compagnia, trpc.total_minutos_retraso FROM TotalRetrasosPorCompania trpc) retrasos_aux ON tvpc.compagnia = retrasos_aux.compagnia
+    LEFT JOIN TotalRetrasosPorCompania trpc ON tvpc.compagnia = trpc.compagnia
 ),
 PromediosConRetraso AS (
     -- Calcular promedio para compañías con retrasos
@@ -69,7 +58,7 @@ PromediosSinRetraso AS (
 PromediosCombinados AS (
     -- Combinar ambos conjuntos
     SELECT * FROM PromediosConRetraso
-    UNION
+    UNION ALL
     SELECT * FROM PromediosSinRetraso
 )
 SELECT c.nombre AS nombre_compania, pc.retraso_promedio AS retraso_promedio_por_vuelo_total
