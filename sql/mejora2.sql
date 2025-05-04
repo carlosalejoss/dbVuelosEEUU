@@ -1,10 +1,3 @@
-/*
--- Índices para optimizar los accesos full y joins
-CREATE INDEX idx_vuelo_comp_aero ON VUELO(compagnia, aeropuertoSalida, aeropuertoLlegada);
-CREATE INDEX idx_aeropuerto_estado_iata ON AEROPUERTO(estado, IATA);
-*/
-
--- Vista materializada para la compañía con más aviones
 CREATE MATERIALIZED VIEW MV_COMPAGNIA_MAX_AVIONES
 BUILD IMMEDIATE
 REFRESH ON DEMAND AS
