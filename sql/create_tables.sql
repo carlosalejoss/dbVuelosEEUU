@@ -71,6 +71,7 @@ CREATE TABLE RETRASO (
     duracion NUMBER(8) NOT NULL,
     idIncidencia NUMBER(8) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
+    CONSTRAINT chk_idIncidencia UNIQUE ( idIncidencia ),
     CONSTRAINT chk_duracion CHECK ( duracion > 0 )
 );
 
@@ -82,14 +83,16 @@ CREATE TABLE DESVIO (
     idIncidencia NUMBER(8) NOT NULL,
     FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
     FOREIGN KEY (aeropuertoDesvio) REFERENCES AEROPUERTO(IATA),
-    FOREIGN KEY (avionDesvio) REFERENCES AVION(matricula)
+    FOREIGN KEY (avionDesvio) REFERENCES AVION(matricula),
+    CONSTRAINT chk_idIncidencia UNIQUE ( idIncidencia )
 );
 
 CREATE TABLE CANCELACION (
     idCancelacion NUMBER(8) PRIMARY KEY,
     motivo VARCHAR(32) NOT NULL,
     idIncidencia NUMBER(8) NOT NULL,
-    FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia)
+    FOREIGN KEY (idIncidencia) REFERENCES INCIDENCIA(idIncidencia),
+    CONSTRAINT chk_idIncidencia UNIQUE ( idIncidencia )
 );
 
 
