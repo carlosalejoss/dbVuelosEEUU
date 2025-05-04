@@ -7,8 +7,8 @@ def calcular_fecha_llegada(fecha_salida, hora_salida_str, hora_llegada_str):
     
     Args:
         fecha_salida: Fecha de salida en formato 'DD/MM/YYYY'
-        hora_salida_str: Hora de salida como string (3-4 dígitos)
-        hora_llegada_str: Hora de llegada como string (3-4 dígitos)
+        hora_salida_str: Hora de salida como string (1-4 dígitos)
+        hora_llegada_str: Hora de llegada como string (1-4 dígitos)
     
     Returns:
         Fecha de llegada en formato 'DD/MM/YYYY'
