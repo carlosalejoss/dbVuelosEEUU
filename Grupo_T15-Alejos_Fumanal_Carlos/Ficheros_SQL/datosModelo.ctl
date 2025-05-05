@@ -1,6 +1,0 @@
-OPTIONS (SKIP=1)
-LOAD DATA
-INFILE './Modelo.csv'
-INTO TABLE MODELO
-FIELDS TERMINATED BY ';'
-(nombre, fabricante, motor)
